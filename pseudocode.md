@@ -1,3 +1,19 @@
+## Things to Keep in Mind
+1. While using Zip Code:
+* data.weather[0].main = weather parameters (rain, snow, extreme, etc.)
+* data.weather[0].description = weather condition ("clear skies").
+* data.weather[0].icon = weather icon 
+* data.main.temp = temperature. Default: Kelvin, Metric: Celsius, Imperial: fahrenheit.
+* data.name = city name
+
+2. Must Have:
+* Weather App Title, Input Box and Button for the top section.
+* Bottom section with city, temperature, condition, other info.
+* Access to the Weather API.
+
+
+
+
 ## Display
 
 1. Top Section 
@@ -7,10 +23,10 @@
 
 2. Bottom Section
 * When the API is called:
-* Display City
-* Display Temperature in K, F, and C.
-* Display Condition
-* Display Other Info 
+* Display City (name)
+* Display Temperature in K, F, and C. (main.temp)
+* Display Condition (weather.description)
+* Display Other Info (weather.icon)
 
 3. Module to display error catch to pop up.
 
@@ -23,12 +39,12 @@
 
 ## Procedures
 1. When the page is first loaded, the top section will appear.
-2. Make sure user input is valid for zipcode. 
+2. User will input zip code: ensure this zipcode is five digits and a number. 
 3. Make a function for the button when clicked to call API.
 4. If data is received, get data from API and display bottom section after it's been loaded:
 * Display information from API
 * City 
-* Temperature to K|F|C (Create functions to get different temps if they're all not given.)
+* Temperature to K|F|C 
 * Condition 
 * Other info to display image/etc
 5. If there's an error, display an Error message in the module.
@@ -39,28 +55,47 @@
 ## Functions
 
 FUNCTION init(): function so the top section will appear on the body load.
-* function init() {
+```
+ function init() {
     DISPLAY top section.
     HIDE bottom section.
 }
+```
 
 FUNCTION validZip(): function to ensure the zipcode entry is a valid 5 digit number.
-* function validZip() {
+```
+function validZip() {
     GET input.value and conditionals to check if the zip is valid.
-
 }
+```
 
 FUNCTION getAPI(): function so that during a click event, the API is called and data is returned.
-* function getAPI() {
+
+```
+function getAPI() {
     USE axios.get to get API call 
 }
+```
 
 FUNCTION displayBottom(): function so when the data is received, put the data in the bottom section.
-* function displayBottom() {
+
+```
+function displayBottom() {
     SET the innerTEXT to .city, .temp, .condition, or for other info.
 }
+```
 
-FUNCTION storeZip(): store the zipcode that's entered and insert it into its storage. (Not for sure if I need this as a function or not yet.)
+FUNCTION focused(): function to hide the bottom section when the zipcode input is focused.
+
+```
+HTML: <element onfocus="myScript">
+
+function hideBottomDisplay() {
+    object.onfocus = HIDE bottom section
+}
+
+```
+
 
 
 
