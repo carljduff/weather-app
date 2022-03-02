@@ -1,9 +1,15 @@
 let cards = document.getElementById('card');
 let inputBox = document.getElementById('input');
 let pError = document.getElementById('error');
+let button = document.getElementById('button');
 let zipEntered = "";
 inputBox.onblur = getZip;
 inputBox.onfocus = init;
+//button.onclick = getAPI;
+function setInnerText(elementID, text) {
+    const element = document.getElementById(elementID)
+    element.innerText = text;
+}
 
 function getZip() {
     let zip = inputBox.value; 
@@ -27,12 +33,13 @@ let getAPI = async function() {
         setInnerText('other', otherInfo);
         show(cards);
         hide(pError);
-        console.log(condition)
+        
         
 
     }
 }
 
+button.onclick = getAPI;
 
 function hide(variable) {
     variable.hidden = true;
@@ -40,29 +47,12 @@ function hide(variable) {
 
 function show(variable) {
     variable.hidden = false;
-    weatherDisplay;
 }
 
 
 function init() {
     hide(cards);
 }
-
-
-
-
-
-
-function weatherDisplay() {
-    let button = document.getElementById('button');
-    button.addEventListener('click', getAPI);
-}
-
-weatherDisplay();
-
-
-
-
 
 
 //myFunction();
@@ -73,10 +63,6 @@ weatherDisplay();
 */
 
 
-function setInnerText(elementID, text) {
-    const element = document.getElementById(elementID)
-    element.innerText = text;
-}
 
 
 
