@@ -2,3 +2,12 @@ body {
     background-color: #4F7CAC;
 }
 
+.card-body {
+    background-color: bisque;
+}
+
+.card-header {
+    background-color:cadetblue;
+    border-radius: 10px;
+}
+

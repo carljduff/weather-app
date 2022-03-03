@@ -9,6 +9,19 @@ let zipEntered = "";
 //let myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
 inputBox.onblur = getZip;
 inputBox.onfocus = init;
+let zips = [];
+
+function storeZips() {
+    let value = inputBox.value;
+    zips.push(value);
+    console.log(zips);
+    for (let i = 0; i < zips.length; i++) {
+        if (value === zips[i]) {
+            //show(pError);
+            setInnerText('error', "Please choose a zipcode that hasn't been chosen.");
+        }
+    }
+}
 
 
 function setInnerText(elementID, text) {
@@ -49,6 +62,7 @@ async function getAPI() {
         image.src = iconLink;
         show(cards);
         hide(pError);
+        storeZips();
         myModal.hide();
     }
 } catch (e) {
@@ -56,6 +70,7 @@ async function getAPI() {
     console.log(e);
 }
 }
+
 
 button.onclick = getAPI;
 
