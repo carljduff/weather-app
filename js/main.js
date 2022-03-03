@@ -5,7 +5,8 @@ let button = document.getElementById('button');
 let zipEntered = "";
 inputBox.onblur = getZip;
 inputBox.onfocus = init;
-//button.onclick = getAPI;
+
+
 function setInnerText(elementID, text) {
     const element = document.getElementById(elementID)
     element.innerText = text;
@@ -24,18 +25,21 @@ let getAPI = async function() {
         let response = await axios.get(weatherLink);
         let data = response.data;
         let condition = data.weather[0].main;
-        let otherInfo = data.weather[0].description;
-        let temperature = data.main.temp;
+        let otherInfo = data.weather[0].icon;
+        let iconLink = "";
+        iconLink.src = `https://openweathermap.org/img/wn/${otherInfo}.png`
+        let kelvin = data.main.temp;
         let cityName = data.name;
+        let celsius = (kelvin - 273.15)
+        let fahrenheit = 1.8 * (kelvin - 273) + 32;
         setInnerText('city', cityName);
-        setInnerText('temp', temperature);
+        setInnerText('kelvin', Math.round(kelvin));
+        setInnerText('fahrenheit', Math.round(fahrenheit));
+        setInnerText('celsius', Math.round(celsius));
         setInnerText('condition', condition);
-        setInnerText('other', otherInfo);
+        setInnerText('other', iconLink);
         show(cards);
         hide(pError);
-        
-        
-
     }
 }
 
@@ -55,7 +59,6 @@ function init() {
 }
 
 
-//myFunction();
 /*
 .catch(err => {
     console.log(err.message);
