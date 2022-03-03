@@ -6,23 +6,34 @@ var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
     keyboard: false
   })
 let zipEntered = "";
-//let myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
 inputBox.onblur = getZip;
 inputBox.onfocus = init;
 let zips = [];
 
+
 function storeZips() {
     let value = inputBox.value;
-    zips.push(value);
     console.log(zips);
-    for (let i = 0; i < zips.length; i++) {
-        if (value === zips[i]) {
-            //show(pError);
-            setInnerText('error', "Please choose a zipcode that hasn't been chosen.");
-        }
+    if (zips.includes(value)) {
+        show(pError)
+        setInnerText('error', "Please choose a zipcode that has not been chosen.")
+        hide(cards);
+    } else {
+        zips.push(value);
     }
 }
+       
+// function pushData() {
+//     let inputText = inputBox.value;
+//     zips.push(inputText);
 
+//     let pval = "";
+
+//     for(i = 0; i < zips.length; i++) {
+//         pval = pval + zips[i];
+//     }
+//     document.getElementById('store').innerText = ` ${pval}, `;
+// }
 
 function setInnerText(elementID, text) {
     const element = document.getElementById(elementID)
@@ -45,7 +56,6 @@ async function getAPI() {
         let data = response.data;
         let condition = data.weather[0].main;
         let otherInfo = data.weather[0].icon;
-        //let iconLink = `https://openweathermap.org/img/wn/${otherInfo}.png`;
         let icon = document.getElementById("image");
         let iconLink = `https://openweathermap.org/img/wn/${otherInfo}.png`;
         let kelvin = data.main.temp;
@@ -57,7 +67,6 @@ async function getAPI() {
         setInnerText('fahrenheit', Math.round(fahrenheit));
         setInnerText('celsius', Math.round(celsius));
         setInnerText('condition', condition);
-        //setInnerText('other-body', iconLink);
         let image = document.getElementById('other-body').appendChild(icon);
         image.src = iconLink;
         show(cards);
@@ -70,7 +79,6 @@ async function getAPI() {
     console.log(e);
 }
 }
-
 
 button.onclick = getAPI;
 
