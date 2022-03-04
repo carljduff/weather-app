@@ -1,6 +1,7 @@
 let cards = document.getElementById('card');
 let inputBox = document.getElementById('input');
 let pError = document.getElementById('error');
+let storage = document.getElementById('store').innerText;
 let button = document.getElementById('button');
 var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
     keyboard: false
@@ -32,7 +33,8 @@ function storeZips() {
 //     for(i = 0; i < zips.length; i++) {
 //         pval = pval + zips[i];
 //     }
-//     document.getElementById('store').innerText = ` ${pval}, `;
+//     document.getElementById('store').innerText = pval;
+   
 // }
 
 function setInnerText(elementID, text) {
@@ -75,7 +77,6 @@ async function getAPI() {
         storeZips();
         myModal.hide();
         changeBG();
-
         
     }
 } catch (e) {
