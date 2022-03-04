@@ -54,6 +54,7 @@ async function getAPI() {
         let weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${zipEntered},us&appid=4f0c02c4f644627986534c8f5b3c43d2`;
         let response = await axios.get(weatherLink);
         let data = response.data;
+        console.log(data);
         let condition = data.weather[0].main;
         let otherInfo = data.weather[0].icon;
         let icon = document.getElementById("image");
@@ -73,6 +74,9 @@ async function getAPI() {
         hide(pError);
         storeZips();
         myModal.hide();
+        changeBG();
+
+        
     }
 } catch (e) {
     myModal.show();
@@ -80,7 +84,31 @@ async function getAPI() {
 }
 }
 
+// switch(condition.innerText) {
+//     case 'Clouds':
+//     document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')";
+//     break;
+// }
+function changeBG() {
+    if(condition.innerText == 'Clouds') {
+        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')";
+    } 
+    if(condition.innerText == 'Rain') {
+        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1520609798519-2e1e8c18df3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')";
+     }
+     if(condition.innerText == 'Clear') {
+        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1590077428593-a55bb07c4665?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1714&q=80')";
+     }
+     if(condition.innerText == 'Snow') {
+        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1521903146409-7165ad695b34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1753&q=80')";
+     }
+     if(condition.innerText == 'Thunderstorm') {
+        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1585074245728-eedb0cc44a66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2464&q=80')";
+     }
+}
+
 button.onclick = getAPI;
+
 
 function hide(variable) {
     variable.hidden = true;
@@ -93,6 +121,7 @@ function show(variable) {
 
 function init() {
     hide(cards);
+
 }
 
 
