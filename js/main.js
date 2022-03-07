@@ -11,43 +11,43 @@ inputBox.onblur = getZip;
 inputBox.onfocus = init;
 let zips = [];
 
-function storeZips() {
-    let value = inputBox.value;
-    console.log(zips);
-    if (zips.includes(value)) {
-        show(pError)
-        setInnerText('error', "Please choose a zipcode that has not been chosen.")
-        hide(cards);
-    } else {
-        zips.push(value);
-    }
-}
+// function storeZips() {
+//     let value = inputBox.value;
+//     console.log(zips);
+//     if (zips.includes(value)) {
+//         show(pError)
+//         setInnerText('error', "Please choose a zipcode that has not been chosen.")
+//         hide(cards);
+//     } else {
+//         zips.push(value);
+//     }
+// }
 
-function getZip() {
-    let zip = inputBox.value; 
-    zipEntered = zip;
-}
+// function getZip() {
+//     let zip = inputBox.value; 
+//     zipEntered = zip;
+// }
 
-function setInnerText(elementID, text) {
-    const element = document.getElementById(elementID)
-    element.innerText = text;
-}
+// function setInnerText(elementID, text) {
+//     const element = document.getElementById(elementID)
+//     element.innerText = text;
+// }
 
-let store = {
-    condition: [],
-    otherInfo: [],
-    icon: [],
-    iconLink: [],
-    kelvin: [],
-    cityName: []
-}
+// let store = {
+//     condition: [],
+//     otherInfo: [],
+//     icon: [],
+//     iconLink: [],
+//     kelvin: [],
+//     cityName: []
+// }
 
-async function getAPI() {
-    let weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${zipEntered},us&appid=4f0c02c4f644627986534c8f5b3c43d2`;
-    let request = await axios.get(weatherLink);
-    let data = request.data;
-    return data;
-}
+// async function getAPI() {
+//     let weatherLink = `https://api.openweathermap.org/data/2.5/weather?zip=${zipEntered},us&appid=4f0c02c4f644627986534c8f5b3c43d2`;
+//     let request = await axios.get(weatherLink);
+//     let data = request.data;
+//     return data;
+// }
 
 async function setState() { 
     try {
